@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+class A;
+class B
+{
+ private :
+ int v2;
+ public:
+ void setdata(int val)
+ {
+    v2=val;
+ }
+ int display()
+ {
+    return v2;
+ }
+ friend void exchange(A &x,B &y);
+
+
+};
+
+class A{
+ private:
+ int v1;
+ public:
+ void setdata(int val)
+ {
+    v1=val;
+ }
+ int display()
+ {
+    return v1;
+
+ }
+
+ friend void exchange(A &x,B &y);
+
+};
+void exchange(A &x,B &y)
+{
+    int temp;
+    temp=x.v1;
+    x.v1=y.v2;
+    y.v2=temp;
+}
+int main()
+{
+    A a;
+    B b;
+    a.setdata(33);
+    b.setdata(44);
+    exchange(a,b);
+    cout<<"a="<<a.display();
+    cout<<"b="<<b.display();
+    return 0;
+
+}
